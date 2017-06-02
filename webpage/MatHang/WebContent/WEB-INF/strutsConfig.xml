@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts 
+Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="dSMHForm" type="form.DanhSachMatHangForm" />
+		<form-bean name="dSTHForm" type="form.DanhSachThuongHieuForm" />
+	</form-beans>
+	<action-mappings>
+		<action input="/" name="dSMHForm"
+			path="/danh-sach-mat-hang" scope="request" type="action.DanhSachMatHangAction">
+			<forward name="dSMH" path="/danhSachMatHang.jsp" />
+			<forward name="test" path="/danh-sach-thuong-hieu.blu" redirect="true" />
+		</action>
+		<action input="/" name="dSTHForm"
+			path="/danh-sach-thuong-hieu" scope="request" type="action.DanhSachThuongHieuAction">
+			<forward name="success" path="/DanhSachThuongHieu.jsp" />
+		</action>
+	</action-mappings>
+	<message-resources parameter="action.ApplicationRes" />
+	
+</struts-config>
