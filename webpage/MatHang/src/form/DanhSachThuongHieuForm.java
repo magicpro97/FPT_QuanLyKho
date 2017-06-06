@@ -16,9 +16,27 @@ public class DanhSachThuongHieuForm extends ActionForm{
 	private String request;
 	private String anhDaiDien;
 	private String thongBao;
+	private String img;
+	private String src;
 	private ArrayList<ThuongHieu> danhSachThuongHieu;
 	
 	
+	public String getSrc() {
+		return src;
+	}
+
+	public void setSrc(String src) {
+		this.src = src;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	public String getThongBao() {
 		return thongBao;
 	}

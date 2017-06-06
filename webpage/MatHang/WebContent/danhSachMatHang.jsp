@@ -237,12 +237,13 @@
  
     		document.getElementById("btnX").value="Xóa";
     		//document.getElementById("reset").style.display="none";
-		    $('#myModal').modal(); 
+		    $('#myModal').modal();
     	}
 		function them(){
 			document.getElementById("form").reset();
 		    $('#myModal').modal();
     	}
+
 	</script>	
 </body>
 </html>

@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.MatHang;
-import model.bean.Pair;
 import model.bo.MatHangBO;
 
 import org.apache.struts.action.Action;
@@ -32,7 +31,7 @@ public class DanhSachMatHangAction extends Action{
 		MatHangBO mHBO=new MatHangBO();
 		danhSachMatHangForm.setDanhSachMatHang(mHBO.getDanhSachMatHang());
 		*/
-		return mapping.findForward("test");
+		return mapping.findForward("dSMH");
 		
 	}
 }

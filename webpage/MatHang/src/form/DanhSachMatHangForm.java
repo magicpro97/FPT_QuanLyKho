@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import model.bean.DanhMucHang;
 import model.bean.MatHang;
-import model.bean.Pair;
 import model.bean.ThuongHieu;
 import model.bo.DanhMucHangBO;
 import model.bo.MatHangBO;

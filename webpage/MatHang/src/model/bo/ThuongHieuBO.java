@@ -18,4 +18,15 @@ public class ThuongHieuBO {
 		return (new ThuongHieuDAO()).them(maTH,tenTH,anhDaiDien,truSo,website);
 	}
 
+	public boolean sua(String maTH, String tenTH, String anhDaiDien, String truSo,
+			String website) {
+		// TODO Auto-generated method stub
+		return (new ThuongHieuDAO()).sua(maTH,tenTH,anhDaiDien,truSo,website);
+	}
+
+	public boolean xoa(String maTH) {
+		// TODO Auto-generated method stub
+		return (new ThuongHieuDAO()).xoa(maTH);
+	}
+
 }

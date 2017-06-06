@@ -42,7 +42,58 @@ public class ThuongHieuDAO {
 				" VALUES ( '%s',N'%s','%s',N'%s','%s' )", maTH, tenTH, anhDaiDien, truSo, website);
 		try{
 			Statement stmt = con.createStatement();
-			if(stmt.executeUpdate(sql)<0)
+			if(stmt.executeUpdate(sql)<1)
+				return false;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}finally{
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
+
+	public boolean sua(String maTH, String tenTH, String anhDaiDien, String truSo,
+			String website) {
+		Connection con = MatHangDAO.connect();
+		if(con==null) return false;
+		String sql=	String.format("update THUONGHIEU set TenTH=N'%s',AnhDaiDien='%s',TruSo=N'%s', Website='%s' where MaTH='%s'",
+				tenTH, anhDaiDien, truSo	,website,maTH);
+		try{
+			Statement stmt = con.createStatement();
+			if(stmt.executeUpdate(sql)<1)
+				return false;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}finally{
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
+
+	public boolean xoa(String maTH) {
+		// TODO Auto-generated method stub
+		Connection con = MatHangDAO.connect();
+		if(con==null) return false;
+		String sql=	String.format("delete from THUONGHIEU where MaTH='%s'", maTH);
+		try{
+			Statement stmt = con.createStatement();
+			if(stmt.executeUpdate(sql)<1)
 				return false;
 		
 		} catch (SQLException e) {

@@ -3,7 +3,6 @@ package model.bo;
 import java.util.ArrayList;
 
 import model.bean.DanhMucHang;
-import model.bean.Pair;
 import model.dao.DanhMucHangDAO;
 
 public class DanhMucHangBO {
