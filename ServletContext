@@ -1,0 +1,13 @@
+The ServletContext is an object that contains meta informaton about your web application. You can access it via the HttpRequest object, like this:
+
+ServletContext context = request.getSession().getServletContext();
+Context Attributes
+Just like in the session object you can store attributes in the servlet context. Here is how:
+
+context.setAttribute("someValue", "aValue");
+You can access the attributes again like this:
+
+Object attribute = context.getAttribute("someValue");
+The attributes stored in the ServletContext are available to all servlets in your application, and between requests and sessions. That means, that the attributes are available to all visitors of the web application. Session attributes are just available to a single user.
+
+The ServletContext attributes are still stored in the memory of the servlet container. That means that the same problems exists as does with the session attributes, in server clusters.
