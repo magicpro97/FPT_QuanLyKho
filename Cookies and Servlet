@@ -1,0 +1,68 @@
+Cookies and Servlets
+HTTP Cookies are little pieces of data that a web application can store on the client machine of users visiting the web application. Typically up to 4 kilo bytes of data. This text will explain how to set, read and remove cookies from inside Java servlets (or JSPs).
+Java Cookie Example
+You can write cookies using the HttpServletResponse object like this:
+
+Cookie cookie = new Cookie("myCookie", "myCookieValue");
+
+response.addCookie(cookie);
+As you can see, the cookie is identified by a name, "myCookie", and has a value, "myCookieValue". Thus, you can add many different cookies with different identifies (names). It's a bit like a Hashtable.
+
+Whenever the the browser accesses the web application it submits the cookies stored on the client machine to the web application. Only cookies stored by the accessed web application are submitted. Cookies from other web applications are not submitted.
+Reading Cookies Sent From the Browser
+You can read the cookies via the HttpServletRequest like this:
+
+Cookie[] cookies = request.getCookies();
+Note: the getCookies() method may return null!
+
+Now you can iterate through the array of cookies and find the cookies you need. Unfortunately there is no way to obtain a cookie with a specific name. The only way to find that cookie again is to iterate the Cookie[] array and check each cookie name. Here is an example:
+
+Cookie[] cookies = request.getCookies();
+
+String userId = null;
+for(Cookie cookie : cookies){
+    if("uid".equals(cookie.getName())){
+        userId = cookie.getValue();
+    }
+}
+This example finds the cookie with the name "uid" and stores its value in the
+
+If you need to access more than one cookie, you could iterate the Cookie[] array once, and put the Cookie instances into a Map, using the cookie name as key, and the Cookie instance as value. Here is how that could look:
+
+Map cookieMap = new HashMap();
+Cookie[] cookies = request.getCookies();
+
+for(Cookie cookie : cookies){
+    cookieMap.put(cookie.getName(), cookie);
+}
+After this code is executed, you can now access the cookies in the cookieMap using the cookie names as keys (cookieMap.get("cookieName")).
+
+Cookie Expiration
+One important Cookie setting is the cookie expiration time. This time tells the browser receiving the cookie how long time it should keep the cookie before deleting it.
+
+You set the cookie expiration time via the setMaxAge() method. This method takes the number of seconds the cookie is to live as parameter. Here is an example:
+
+Cookie cookie = new Cookie("uid", "123");
+
+cookie.setMaxAge(24 * 60 * 60);  // 24 hours. 
+
+response.addCookie(cookie);
+This example first creates a Cookie instance with the name "uid" and the value "123". Second, it sets the expiration to 24 hours using the setMaxAge() method. 24 hours is 60 seconds x 60 minutes x 24 hours (24 x 60 x 60). Finally the example sets the cookie on the HttpServletResponse object, so the cookie is included in the response sent to the browser.
+
+Removing Cookies
+Sometimes you may want to remove a cookie from the browser. You do so by setting the cookie expiration time. You can set the expiration time to 0 or -1. If you set the expiration time to 0 the cookie will be removed immediately from the browser. If you set the expiration time to -1 the cookie will be deleted when the browser shuts down.
+
+Here is an example:
+
+Cookie cookie = new Cookie("uid", "");
+
+cookie.setMaxAge(0); 
+
+response.addCookie(cookie);
+If the browser already has a cookie stored with the name "uid", it will be deleted after receiving the cookie with the same name ("uid") with an expiration time of 0. If the browser did not already have the cookie stored, this new cookie is just thrown out immediately since its expiration time is 0.
+
+Additional Cookie Settings
+A cookie has various other settings you can modify and access in addition to its expiration. Check out the Cookie class JavaDoc for more details.
+
+Cookie Use Cases
+Cookies are most often used to store user specific information, like e.g. a unique user ID (for anonymous users which do not login), a session ID, or user specific setttings you do not want to store in your web applications database (if it has one).
